@@ -14,4 +14,11 @@
             </id>
         </attributes>
     </entity>
+    <entity class="Comment" access="FIELD">
+        <attributes>
+            <id name="id">
+                <generated-value strategy="IDENTITY"/>
+            </id>
+        </attributes>
+    </entity>
 </entity-mappings>
