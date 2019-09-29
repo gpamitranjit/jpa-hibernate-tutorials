@@ -4,6 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 /**
  *
  * @author Amit Patil
@@ -12,9 +15,20 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "posts")
 public class Post extends AuditModel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2543970158242678895L;
+
 	@Id
+	@GenericGenerator(name = "sequencePost",
+		strategy = "enhanced-sequence",
+		parameters = {
+				@Parameter(name = "optimizer", value="pooled-lo"),
+				@Parameter(name = "initial_value", value = "1"),
+				@Parameter(name = "increment_size", value = "5")
+		})
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequencePost")
-	@SequenceGenerator(name = "sequencePost", allocationSize = 10)
 	private Long id;
 
 	@NotNull
