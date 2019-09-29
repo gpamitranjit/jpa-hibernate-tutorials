@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.Parameter;
 
 /**
  *
@@ -17,8 +19,15 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "comments")
 public class Comment extends AuditModel {
 	@Id
+	@GenericGenerator(name = "sequenceComment",
+	strategy = "enhanced-sequence",
+	parameters = {
+			@Parameter(name = "optimizer", value="pooled-lo"),
+			@Parameter(name = "initial_value", value = "1"),
+			@Parameter(name = "increment_size", value = "5")
+	})
+
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceComment")
-	@SequenceGenerator(name = "sequenceComment", allocationSize = 10)
 	private Long id;
 
 	@NotNull
