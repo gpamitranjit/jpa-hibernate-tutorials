@@ -8,6 +8,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -22,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(
-        value = {"createdAt", "updatedAt"},
+        value = {"createdAt", "updatedAt", "version_id"},
         allowGetters = true
 )
 public abstract class AuditModel implements Serializable {
@@ -41,7 +42,18 @@ public abstract class AuditModel implements Serializable {
     @LastModifiedDate
     private Date updatedAt;
 
-    public Date getCreatedAt() {
+    @Version
+    private Long version_id;
+
+    public Long getVersion_id() {
+		return version_id;
+	}
+
+	public void setVersion_id(Long version_id) {
+		this.version_id = version_id;
+	}
+
+	public Date getCreatedAt() {
         return createdAt;
     }
 

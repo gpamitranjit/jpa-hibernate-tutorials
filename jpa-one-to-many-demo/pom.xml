@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -15,7 +16,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.0.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -34,17 +35,18 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.oracle.jdbc/ojdbc8 -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-			<version>8.0.13</version>
+			<groupId>com.oracle.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>12.2.0.1</version>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.3.1.Final</version>
+			<version>5.4.5.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -52,7 +54,27 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	<repositories>
+		<repository>
+			<id>Maven-central</id>
+			<name>Central</name>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<url>https://repo.maven.apache.org/maven2</url>
+			<layout>default</layout>
+		</repository>
+		<!-- This repository for oracle driver -->
+		<repository>
+			<id>XWiki-externals</id>
+			<name>XWiki</name>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<url>https://maven.xwiki.org/externals/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 	<build>
 		<plugins>
 			<plugin>
@@ -61,6 +83,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
