@@ -23,7 +23,8 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 7529424835544174898L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user-sequence-generator")
+	@SequenceGenerator(name = "user-sequence-generator", sequenceName = "user_seq", allocationSize = 3, initialValue = 1)
     private Long id;
 
     @NotNull
@@ -38,7 +39,7 @@ public class User implements Serializable {
     @NotNull
     @Email
     @Size(max = 100)
-    @Column(unique = true)
+//    @Column(unique = true)
     private String email;
 
     @NotNull

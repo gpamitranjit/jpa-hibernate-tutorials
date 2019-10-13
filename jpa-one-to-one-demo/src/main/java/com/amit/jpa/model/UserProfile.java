@@ -22,7 +22,8 @@ public class UserProfile implements Serializable {
 	private static final long serialVersionUID = 3960703238763006209L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userProfile_sequence-generator")
+	@SequenceGenerator(name = "userProfile_sequence-generator", sequenceName = "userProfile_seq", allocationSize = 3, initialValue = 1)
     private Long id;
 
     @Column(name = "phone_number")
